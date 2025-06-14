@@ -15,7 +15,7 @@ main = do
 		[len'] -> do
 			let len = read len'
 			generateProgramFile len
-		_ -> putStrLn "Use: .\Programs <program length>"
+		_ -> putStrLn "Use: .\\Programs <program length>"
 
 generateProgramFile :: Int -> IO ()
 generateProgramFile len = writeFile ("programs_" ++ show len ++ ".txt") $ unlines $ listPrograms len

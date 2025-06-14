@@ -38,21 +38,20 @@ main :: IO ()
 main = do
 	args <- getArgs
 	case args of
-		[len', limit'] -> do
+		[len, limit'] -> do
 
-			let len = read len'
 			let limit = read limit'
 
-			let programFile = "programs_" ++ show len ++ ".txt"
-			let todoFile = "TODO_" ++ show len ++ ".txt"
-			let recordFile = "record_" ++ show len ++ ".txt"
+			let programFile = "programs_" ++ len ++ ".txt"
+			let todoFile = "TODO_" ++ len ++ ".txt"
+			let recordFile = "record_" ++ len ++ ".txt"
 
 			programs <- lines <$> readFile programFile
 			writeFile todoFile ""
 			writeFile recordFile ""
 
 			filterPrograms todoFile recordFile limit 0 1 programs
-		_ -> putStrLn "Use: .\BF_BB <program length> <evaluation limit>"
+		_ -> putStrLn "Use: .\\BF_BB <program length> <evaluation limit>"
 
 filterPrograms :: String -> String -> Int -> Int -> Int -> [String] -> IO ()
 filterPrograms todoFile recordFile limit record n [] = putStrLn "Done"
